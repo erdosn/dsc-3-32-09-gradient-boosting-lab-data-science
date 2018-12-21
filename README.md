@@ -13,6 +13,48 @@ You will be able to:
 * Use adaboost to make predictions on a dataset
 * Use Gradient Boosting to make predictions on a dataset
 
+
+## Objectives (Study Group)
+YWBAT 
+* (YW)Describe Gradient Descent
+* Compare and Contrast Adaboost and Gradient Boosting for Random Forest
+    * Boosted Trees
+* Implement Boosted Trees in Python
+
+## Outline
+* YW define gradient descent
+    * It's a way of optimizing model by decreasing error
+    * Cost Curve - Function comparing a measure of error to a parameter in model
+    * For example
+        * In LinReg the parameter (xaxis) could be slope and the error could be RMSE (yaxis)
+        * **Goal**: Find the lowest point on the cost curve, but why?
+        * The **lowest point** represents the minimal error and that will give us our parameter
+* Adaboost (Outline)
+    * Look at a visual in the lecture
+* **Questions on ADABOOSTING**
+    * What is a weak learner? 
+        * Model that is barely better than guessing
+        * Using a tree that is making predictions based on 1 split
+        * Splitting on points that were incorrectly predicted in the previous tree
+    * What is the final result?
+        * Combination of all the postive and negative
+        * Combination of the decision boundaries
+* Gradient Boosting 
+    * Discuss the lecture section
+* Compare and contrast
+    * Adaboost and Gradient are similar b/c
+        * Train on data that is incorrect (weak learners) 
+        * Iterative process
+    * Adaboost and Gradient are different b/c
+        * Adaboost uses bagging (grouping) 
+        * Gradient Boosting uses error
+        * Adaboost relies on Decision Boundaries
+        * Gradient Boosting relies on Gradient Descent on the Loss Function (Residuals)
+* Code in Python
+
+# Notes
+* Calculate **purity** of a split on a decision tree using **gini** index
+
 ## Getting Started
 
 In this lab, we'll learn how to use Boosting algorithms to make classifications on the [Pima Indians Dataset](http://ftp.ics.uci.edu/pub/machine-learning-databases/pima-indians-diabetes/pima-indians-diabetes.names). You will find the data stored within the file `pima-indians-diabetes.csv`. Our goal is to use boosting algorithms to classify each person as having or not having diabetes. Let's get started!
@@ -25,6 +67,18 @@ We'll begin by importing everything we need for this lab. In the cell below:
 * Import `StandardScaler` from `sklearn.preprocessing`
 * Import `AdaboostClassifier` and `GradientBoostingClassifier` from `sklearn.ensemble`
 * Import `accuracy_score`, `f1_score`, `confusion_matrix`, and `classification_report` from `sklearn.metrics`
+
+# Boosting Methods
+
+|Adaboost (Adaptive Boosting)|Gradient Boosting|
+|:-|:-|
+|Makes predictions on test data                   | Uses a differentiable loss function |
+|Uses tp/fp/tn/fn to assign weights               | Makes predictions on test data|
+|Uses weights to collect more training data       | Calculates residulals on each data point| 
+|Creates a new classifier (weak learner)          | Creates a loss function using these residuals |
+|Combine our trees to create a final boosted tree | Needs to be differentiable to take a derivative |
+| | Derivates help find minimum (minimize loss) |
+| | Train on residuals interatively | 
 
 Now, use pandas to read in the data stored in `pima-indians-diabetes.csv` and store it in a DataFrame. Display the head to inspect the data we've imported and ensure everything loaded correctly. 
 
